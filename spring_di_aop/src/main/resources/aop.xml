@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+		
+	<bean name="testAspect" class="study.spring.aop.TestAspect" />
+	<bean name="loggingAspect" class="study.spring.aop.LoggingAspect" />
+	
+	<bean name="aspectTargetBean" class="study.spring.aop.AspectTargetBean" />
+
+	<!-- advisor test -->	
+	<bean name="aspectTargetInterfaceImplBean" class="study.spring.aop.AspectTargetInterfaceImplBean" />
+	<bean name="customerArroundAdvice" class="study.spring.aop.CustomArroundAdvice"/>
+	
+	<!-- Spring AOP XML Configuration -->
+	<aop:config>
+		<aop:advisor advice-ref="customerArroundAdvice" pointcut="target(study.spring.aop.AspectTestInterface)"/>
+		
+		<aop:aspect ref="testAspect">
+			<aop:pointcut expression="execution(* study.spring.aop.AspectTarget*.target*(..))" id="pointcut"/>
+			<aop:before method="beforeProcess" pointcut-ref="pointcut"/> <!-- advice -->
+			<aop:after method="afterProcess" pointcut-ref="pointcut"/> <!-- advice -->
+			<aop:after-returning method="afterReturingProcess" pointcut-ref="pointcut"/> <!-- advice -->
+			<aop:after-throwing method="afterThrowingProcess" pointcut-ref="pointcut"/> <!-- advice -->
+			<aop:around method="aroundProcess" pointcut-ref="pointcut"/> <!-- advice -->
+		</aop:aspect>
+		<aop:aspect ref="loggingAspect">
+			<aop:pointcut expression="execution(* study.spring.aop.AspectTarget*.target*(..))" id="pointcut"/>
+			<aop:around method="logging" pointcut-ref="pointcut"/> <!-- advice -->
+		</aop:aspect>
+				
+	</aop:config>
+
+</beans>

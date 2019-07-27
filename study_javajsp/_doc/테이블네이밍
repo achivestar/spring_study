@@ -1,0 +1,80 @@
+* 테이블
+VIEW를 구분해야할 필요가 있을 경우
+VIEW와 TABLE을 구분하기 위한 PREFIX나 SUFFIX사용 
+필요가 없을 경우 구지 PREFIX, SUFFIX사용하지 않는다
+
+
+* 테이블 필드
+
+[접두사(PREFIX)]
+회원 : MEM_
+사용자 : USER_
+파일 : FILE_
+공지,알림 : NOTI_
+사용 : USE_
+등록 : REG_
+삭제 : DEL_
+수정 : MOD_, UPD_
+그룹 : GROUP_
+코드 : CODE_
+가입 : JOIN_
+항목 : ITEM_
+메모 : MEMO_
+시작 : STRT
+끝 : END_
+종료 : STOP_
+처음 : FRST_
+마지막 : LAST_
+발송 : SEND_
+수신 : RECV_
+추가,여분 : EXTRA_
+표시 : DISP_
+조회 : VIEW_
+가능 : AVAIL_
+
+
+
+[접미사(SUFFIX)]
+이름 : _NM
+아이디 : _ID
+나이 : _AGE
+순번 : _SEQ
+번호 : _NO
+일련번호 : _SNO
+내용 : _CONT
+설명 : _DESC
+이메일 : _EMAIL
+코드 : _CD
+그룹 : _GRP
+카테고리 : _CAT
+타입 : _TP
+구분 : _GBN
+깊이 : _DPH
+등급 : _LV
+수랑/횟수 : _CNT
+합계 : _SUM
+금액 : _AMT
+길이 : _LEN
+사이즈 : _SIZE, _SZ
+너비 : _WIDTH
+높이 : _HEIGHT
+플래그 : _FLG
+주소 : _ADDR
+상태 : _STAT, _STATUS
+여부 : _YN
+아이피 : _IP
+순서 : _ORD, _ODR
+URL : _URL
+연락처(유선) : _TEL
+연락처(무선) : _HP
+시간 : _HR
+DATE형 날짜 : _DT
+물자열 날짜(년월일) : _YMD
+물자열 날짜(년워일시분초) : _YMDHMS
+년 : _YEAR
+월 : _MON
+일 : _DAY
+주석,코멘트 : _CMNT
+위도 : _LAT
+경도 : _LNG
+사유 : _RSN

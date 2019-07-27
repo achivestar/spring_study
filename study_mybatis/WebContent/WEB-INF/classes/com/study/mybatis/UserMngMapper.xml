@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.mybatis.UserMngMapper">
+	<select id="selectUserList" parameterType="hashmap" resultType="com.study.mybatis.UserVO">
+		SELECT USER_ID AS userId
+			 , USER_NM AS userNm
+			 , PHONE AS phone
+			 , EMAIL AS email
+			 , USER_LV AS userLv
+			 , TRY_CNT AS tryCnt
+			 , STATUS AS status
+			 , LAST_DT AS lastDt
+			 , UPD_DT AS updDt
+			 , REG_DT AS regDt
+		  FROM USER
+		 WHERE 1=1
+		 <if test="searchCondition != null and searchKeyword != null">
+		 <choose>
+		 	<when test="searchCondition == 'ID'">
+		 	AND USER_ID = #{searchKeyword}
+		 	</when>
+		 	<when test="searchCondition == 'NM'">
+		 	AND USER_NM LIKE CONCAT('%',#{searchKeyword},'%')
+		 	</when>
+		 </choose>
+		 </if>
+	</select>
+</mapper>

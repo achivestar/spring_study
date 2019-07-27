@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE taglib
+        PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+	"http://java.sun.com/j2ee/dtd/web-jsptaglibrary_1_2.dtd">
+
+<taglib>
+
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>1.2</jsp-version>
+	<short-name>mytag</short-name>
+	<description>
+		my custom tag library
+	</description>
+
+	<tag>
+		<name>cr2br</name>
+		<tag-class>study.customtag.Cr2BrTag</tag-class>
+		<body-content>empty</body-content>
+		<description>
+			carrige return to br tag
+		</description>
+		<attribute>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>strcut</name>
+		<tag-class>study.customtag.StringCutTag</tag-class>
+		<body-content>empty</body-content>
+		<description>
+			string cut
+		</description>
+		<attribute>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>len</name>
+			<required>true</required>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>selected</name>
+		<tag-class>study.customtag.SelectedTag</tag-class>
+		<body-content>empty</body-content>
+		<description>
+			return selected string for check input, select
+			type : S(elected), C(hecked)
+			nullsel : if compareValue is null, selected
+		</description>
+		<attribute>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>compareValue</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>nullsel</name>
+			<required>false</required>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<required>false</required>
+		</attribute>
+	</tag>
+</taglib>

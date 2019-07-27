@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.spring.admin.usermng.mapper.UserMngMapper_Oracle">
+	<!-- 사용자리스트 조회 -->
+	<select id="selectUserList" resultType="userVO">
+		SELECT USER_ID AS userId
+			, USER_NM AS userNm
+			, USER_PW AS userPw
+			, PHONE AS phone
+			, EMAIL AS email
+			, USER_LV AS userLv
+			, TRY_CNT AS tryCnt
+			, STATUS AS status
+			, LAST_DT AS lastDt
+			, UPD_DT AS updDt
+			, REG_DT AS regDt
+		FROM USER
+	</select>
+
+	<!-- 사용자 조회 -->
+	<select id="selectUser" parameterType="string" resultType="userVO">
+		SELECT USER_ID AS userId
+			, USER_NM AS userNm
+			, USER_PW AS userPw
+			, PHONE AS phone
+			, EMAIL AS email
+			, USER_LV AS userLv
+			, TRY_CNT AS tryCnt
+			, STATUS AS status
+			, LAST_DT AS lastDt
+			, UPD_DT AS updDt
+			, REG_DT AS regDt
+		FROM USER
+		WHERE USER_ID = #{userId}
+	</select>
+
+	<!-- 사용자 삭제 -->
+	<delete id="deleteUser" parameterType="string">
+		DELETE FROM USER WHERE USER_ID = #{userId}
+	</delete>
+
+	<!-- 사용자등록 -->
+	<insert id="insertUser" parameterType="userVO">
+		INSERT INTO USER (
+			USER_ID,
+			USER_NM,
+			USER_PW,
+			USER_LV,
+			PHONE,
+			EMAIL,
+			TRY_CNT,
+			STATUS,
+			LAST_DT,
+			UPD_DT,
+			REG_DT
+		) VALUES (
+			#{userId},
+			#{userNm},
+			#{userPw},
+			#{userLv},
+			#{phone},
+			#{email},
+			0,
+			#{status},
+			NULL,
+			NOW(),
+			NOW()
+		)
+	</insert>
+
+	<!-- 사용자수정 -->
+	<update id="updateUser" parameterType="userVO">
+		UPDATE USER
+		   SET  USER_NM = #{userNm},
+			   	USER_LV = #{userLv},
+				PHONE = #{phone},
+				EMAIL = #{email},
+				STATUS = #{status}
+		 WHERE USER_ID = #{userId}
+	</update>
+
+</mapper>

@@ -1,0 +1,53 @@
+라이브러리 추가
+- maven
+<!-- http://mvnrepository.com/artifact/org.mybatis/mybatis -->
+<dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis</artifactId>
+    <version>3.4.0</version>
+</dependency>
+
+
+mybatis 설정파일 추가
+- mybatis-config.xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="userVO" type="study.ZZexercise.usermng.UserVO"/>
+	</typeAliases>
+
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="study/mybatis/UserMapper.xml" />
+	</mappers>
+</configuration>
+
+
+mybatis 초기화 루틴
+String resource = "study/mybatis/mybatis-config.xml";
+InputStream inputStream = Resources.getResourceAsStream(resource);
+SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+
+쿼리 맵파일추가(sqlmap 파일)
+UserMapper.xml
+
+쿼리 수행 코드
+SqlSession session = sqlSessionFactory.openSession();
+try {
+  Map userData = (UserVO)session.selectOne("study.mybatis.UserMapper.selectUser", userId);
+} finally {
+  session.close();
+}

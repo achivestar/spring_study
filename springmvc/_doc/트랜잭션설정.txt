@@ -1,0 +1,46 @@
+http://egloos.zum.com/springmvc/v/499291
+
+[pom.xml]
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>org.aspectj</groupId>
+		    <artifactId>aspectjweaver</artifactId>
+		    <version>${org.aspectj-version}</version>
+		</dependency>
+
+
+<!-- @Transactional을 통한 트랜젝션관리 활성화(선언적 트랜젝션관리) -->
+<!--* transaction-manager="transactionManager" 부분은 트랜젝션Manager 빈의 이름이  transactionManager일 경우 생략가능-->
+<tx:annotation-driven transaction-manager="transactionManager"/>
+
+
+<!-- xml을 통한 트랜젝션관리 설정 -->
+<aop:config>
+	<aop:pointcut id="requiredTx" expression="execution(* com.study..service.*Impl.*(..)) or execution(* egovframework.com..*Impl.*(..))"/>
+	<aop:advisor advice-ref="txAdvice" pointcut-ref="requiredTx" />
+</aop:config>
+
+<!--* transaction-manager="transactionManager" 부분은 트랜젝션Manager 빈의 이름이  transactionManager일 경우 생략가능-->
+<!--* rollback-for 미지정시 RuntimeException(기본값) 발생시만 rollback
+<tx:advice id="txAdvice" transaction-manager="transactionManager">
+	<tx:attributes>
+		<tx:method name="*" rollback-for="Exception"/>
+	</tx:attributes>
+
+	<!-- 보다 세밀한 트랜젝션 처리 설정
+	<tx:attributes>
+		<tx:method name="needTransactionMethodPattern" propagation="REQUIRES_NEW" />
+		<tx:method name="select*" propagation="REQUIRED" read-only="true" />
+		<tx:method name="*" />
+	</tx:attributes>
+	-->
+</tx:advice>
+
+<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<property name="dataSource" ref="dataSource" />
+</bean>

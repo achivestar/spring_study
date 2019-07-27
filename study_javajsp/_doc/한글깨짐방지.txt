@@ -1,0 +1,9 @@
+jsp파일에서 최상단에 위치
+request.setCharacterEncoding("utf-8");
+
+encoding filter web.xml에 지정
+CharacterEncodingFilter
+
+
+mysql
+url에 useUnicode=yes&characterEncoding=utf8 붙이기
