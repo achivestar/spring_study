@@ -8,6 +8,6 @@
 	</typeAliases>
 
 	<mappers>
-		<mapper resource="mybatis/sqlmap/UserMng.xml" />
+		<mapper resource="mybatis/sqlmap/UserMng_Mysql.xml" />
 	</mappers>
 </configuration>

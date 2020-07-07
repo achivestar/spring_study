@@ -7,30 +7,30 @@ import com.study.spring.common.GlobalConst;
 
 public class AuthorityUtil {
 	/**
-	 * ·Î±×ÀÎ Ã¼Å©
+	 * ë¡œê·¸ì¸ì²´í¬
 	 * @param request
 	 * @throws InvalidLoginException
 	 */
 	public static void checkLogin(HttpServletRequest request) throws InvalidLoginException {
 		if(!isLogin(request)) throw new InvalidLoginException();
 	}
-	
+
 	/**
-	 * ·Î±×ÀÎ¿©ºÎ
+	 * ë¡œê·¸ì¸ì—¬ë¶€
 	 * @param request
 	 * @return
 	 */
 	public static boolean isLogin(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		if (session == null || session.getAttribute(GlobalConst.LOGIN_SESSION_KEY) == null) return false;
-		
+
 		LoginInfo loginInfo = (LoginInfo)session.getAttribute(GlobalConst.LOGIN_SESSION_KEY);
-		
+
 		return (loginInfo != null && loginInfo.isValidId());
 	}
-	
+
 	/**
-	 * ·Î±×ÀÎÁ¤º¸ ¼¼¼Ç ÀúÀå
+	 * ë¡œê·¸ì¸ì„¸ì…˜ì •ë³´ì €ì¥
 	 * @param request
 	 * @param loginInfo
 	 */
@@ -40,9 +40,9 @@ public class AuthorityUtil {
 			session.setAttribute(GlobalConst.LOGIN_SESSION_KEY, loginInfo);
 		}
 	}
-	
+
 	/**
-	 * ·Î±×ÀÎ¼¼¼ÇÁ¤º¸Á¦°Å
+	 * ë¡œê·¸ì¸ì„¸ì…˜ì •ë³´ì œê±°
 	 * @param request
 	 */
 	public static void logout(HttpServletRequest request) {
